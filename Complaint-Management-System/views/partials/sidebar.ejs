@@ -1,0 +1,72 @@
+
+<div class="fixed top-0 left-0 w-64 h-screen bg-slate-900 text-white shadow-lg">
+
+    <!-- Logo -->
+    <div class="p-6 border-b border-slate-700">
+        <h1 class="text-2xl font-bold text-center text-blue-400">
+            CMS
+        </h1>
+        <p class="text-sm text-center text-slate-400">
+            Complaint Management System
+        </p>
+    </div>
+
+    <!-- Menu -->
+    <nav class="mt-6">
+
+        <a href="/dashboard"
+            class="flex items-center px-6 py-3 hover:bg-slate-800 transition">
+            📊
+            <span class="ml-3">Dashboard</span>
+        </a>
+
+        <!-- Admin Only -->
+     <% if (user?.role === "admin") { %>
+
+    <a href="/users" class="flex items-center px-6 py-3 hover:bg-slate-800 transition">
+        👥 <span class="ml-3">Users</span>
+    </a>
+
+    <a href="/reports" class="flex items-center px-6 py-3 hover:bg-slate-800 transition">
+        📈 <span class="ml-3">Reports</span>
+    </a>
+
+    <a href="/settings" class="flex items-center px-6 py-3 hover:bg-slate-800 transition">
+        ⚙️ <span class="ml-3">Settings</span>
+    </a>
+
+<% } %>
+
+        <a href="/message"
+            class="flex items-center px-6 py-3 hover:bg-slate-800 transition">
+            📊
+            <span class="ml-3">message</span>
+        </a>
+        <!-- Common Menu -->
+        <a href="/complaints"
+            class="flex items-center px-6 py-3 hover:bg-slate-800 transition">
+            📝
+            <span class="ml-3">Complaints</span>
+        </a>
+
+        <a href="/profile"
+            class="flex items-center px-6 py-3 hover:bg-slate-800 transition">
+            👤
+            <span class="ml-3">Profile</span>
+        </a>
+
+    </nav>
+
+    <!-- Footer -->
+    <div class="absolute bottom-0 w-full border-t border-slate-700">
+
+        <a href="/logout"
+            class="flex items-center px-6 py-4 text-red-400 hover:bg-red-600 hover:text-white transition">
+            🚪
+            <span class="ml-3">Logout</span>
+        </a>
+
+    </div>
+
+</div>
+

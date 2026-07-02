@@ -1,0 +1,76 @@
+<%- include("../partials/sidebar") %>
+
+<div class="ml-64">
+
+<%- include("../partials/navbar") %>
+
+<div class="p-8">
+
+<div class="bg-white rounded shadow p-6">
+
+<h2 class="text-2xl font-bold mb-5">
+Edit Complaint
+</h2>
+
+<form action="/complaints/edit/<%= complaint._id %>" method="POST">
+
+<input
+type="text"
+name="title"
+value="<%= complaint.title %>"
+class="border w-full p-3 rounded mb-4">
+
+<textarea
+name="description"
+class="border w-full p-3 rounded mb-4"><%= complaint.description %></textarea>
+
+<select
+name="category"
+class="border w-full p-3 rounded mb-4">
+
+<option <%= complaint.category==="Technical"?"selected":"" %>>Technical</option>
+
+<option <%= complaint.category==="Electricity"?"selected":"" %>>Electricity</option>
+
+<option <%= complaint.category==="Water"?"selected":"" %>>Water</option>
+
+<option <%= complaint.category==="Other"?"selected":"" %>>Other</option>
+
+</select>
+
+<select
+name="status"
+class="border w-full p-3 rounded mb-4">
+
+<option <%= complaint.status==="Pending"?"selected":"" %>>
+Pending
+</option>
+
+<option <%= complaint.status==="In Progress"?"selected":"" %>>
+In Progress
+</option>
+
+<option <%= complaint.status==="Resolved"?"selected":"" %>>
+Resolved
+</option>
+
+<option <%= complaint.status==="Rejected"?"selected":"" %>>
+Rejected
+</option>
+
+</select>
+
+<button
+class="bg-blue-600 text-white px-6 py-3 rounded">
+
+Update Complaint
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>

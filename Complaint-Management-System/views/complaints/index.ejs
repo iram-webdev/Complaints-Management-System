@@ -1,0 +1,111 @@
+<%- include("../partials/sidebar") %>
+
+<div class="ml-64">
+
+    <%- include("../partials/navbar") %>
+
+    <div class="p-8">
+
+        <div class="flex justify-between items-center mb-5">
+
+            <h2 class="text-2xl font-bold">
+                Complaint List
+            </h2>
+
+            <a href="/complaints/add"
+                class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded">
+                + Add Complaint
+            </a>
+
+        </div>
+
+        <table class="w-full border border-gray-300">
+
+            <thead>
+
+                <tr class="bg-gray-200">
+
+                    <th class="border p-3">Title</th>
+                    <th class="border p-3">Category</th>
+                    <th class="border p-3">Status</th>
+                    <th class="border p-3">User</th>
+                    <th class="border p-3">Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <% complaints.forEach(c => { %>
+
+                    <tr>
+
+                        <td class="border p-3">
+                            <%= c.title %>
+                        </td>
+
+                        <td class="border p-3">
+                            <%= c.category %>
+                        </td>
+
+                        <td class="border p-3">
+
+                            <% if(c.status==="Pending"){ %>
+
+                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
+                                    Pending
+                                </span>
+
+                            <% } else if(c.status==="In Progress"){ %>
+
+                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
+                                    In Progress
+                                </span>
+
+                            <% } else if(c.status==="Resolved"){ %>
+
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">
+                                    Resolved
+                                </span>
+
+                            <% } else { %>
+
+                                <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full">
+                                    Rejected
+                                </span>
+
+                            <% } %>
+
+                        </td>
+
+                        <td class="border p-3">
+                            <%= c.user ? c.user.name : "-" %>
+                        </td>
+
+                        <td class="border p-3">
+
+                            <a href="/complaints/edit/<%= c._id %>"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">
+                                Edit
+                            </a>
+
+                            <a href="/complaints/delete/<%= c._id %>"
+                                onclick="return confirm('Are you sure you want to delete this complaint?')"
+                                class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded ml-2">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                <% }) %>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

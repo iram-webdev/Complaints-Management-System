@@ -1,0 +1,55 @@
+<%- include("../partials/sidebar") %>
+
+<div class="ml-64">
+
+<%- include("../partials/navbar") %>
+
+<div class="p-8">
+
+<div class="bg-white p-6 rounded shadow">
+
+<h2 class="text-2xl font-bold mb-5">
+Add Complaint
+</h2>
+
+<form action="/complaints/add" method="POST">
+
+<input
+type="text"
+name="title"
+placeholder="Complaint Title"
+class="border w-full p-3 rounded mb-4">
+
+<textarea
+name="description"
+placeholder="Description"
+class="border w-full p-3 rounded mb-4"></textarea>
+
+<select
+name="category"
+class="border w-full p-3 rounded mb-4">
+
+<option>Technical</option>
+
+<option>Electricity</option>
+
+<option>Water</option>
+
+<option>Other</option>
+
+</select>
+
+<button
+class="bg-blue-600 text-white px-6 py-3 rounded">
+
+Submit Complaint
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>

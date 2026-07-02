@@ -1,0 +1,60 @@
+<%- include("../partials/sidebar") %>
+
+<div class="ml-64">
+
+<%- include("../partials/navbar") %>
+
+<div class="p-8">
+
+<div class="bg-white rounded shadow p-6">
+
+<h2 class="text-2xl font-bold mb-5">
+
+Add User
+
+</h2>
+
+<form action="/users/add" method="POST">
+
+<input
+type="text"
+name="name"
+placeholder="Name"
+class="border w-full p-3 rounded mb-4">
+
+<input
+type="email"
+name="email"
+placeholder="Email"
+class="border w-full p-3 rounded mb-4">
+
+<input
+type="password"
+name="password"
+placeholder="Password"
+class="border w-full p-3 rounded mb-4">
+
+<select
+name="role"
+class="border w-full p-3 rounded mb-4">
+
+<option value="user">User</option>
+
+<option value="admin">Admin</option>
+
+</select>
+
+<button
+class="bg-blue-600 text-white px-6 py-3 rounded">
+
+Save User
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>

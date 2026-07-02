@@ -1,0 +1,98 @@
+<%- include("../partials/sidebar") %>
+
+<div class="ml-64">
+
+    <%- include("../partials/navbar") %>
+
+    <div class="p-8">
+
+        <div class="flex justify-between items-center mb-6">
+
+            <h2 class="text-3xl font-bold">
+                User Management
+            </h2>
+
+            <a href="/users/add"
+                class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg">
+                + Add User
+            </a>
+
+        </div>
+
+        <div class="bg-white rounded-xl shadow overflow-hidden">
+
+            <table class="w-full">
+
+                <thead class="bg-slate-800 text-white">
+
+                    <tr>
+
+                        <th class="p-4 text-left">Name</th>
+                        <th class="p-4 text-left">Email</th>
+                        <th class="p-4 text-left">Role</th>
+                        <th class="p-4 text-center">Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% users.forEach(user => { %>
+
+                        <tr class="border-b hover:bg-gray-50">
+
+                            <td class="p-4">
+                                <%= user.name %>
+                            </td>
+
+                            <td class="p-4">
+                                <%= user.email %>
+                            </td>
+
+                            <td class="p-4">
+
+                                <% if(user.role==="admin"){ %>
+
+                                    <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">
+                                        Admin
+                                    </span>
+
+                                <% } else { %>
+
+                                    <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">
+                                        User
+                                    </span>
+
+                                <% } %>
+
+                            </td>
+
+                            <td class="p-4 text-center">
+
+                                <a href="/users/edit/<%= user._id %>"
+                                    class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded">
+                                    Edit
+                                </a>
+
+                                <a href="/users/delete/<%= user._id %>"
+                                    onclick="return confirm('Delete this user?')"
+                                    class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded ml-2">
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

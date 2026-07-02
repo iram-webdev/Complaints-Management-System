@@ -1,0 +1,119 @@
+<%- include("../partials/sidebar") %>
+
+<div class="ml-0 md:ml-64 bg-gray-50 min-h-screen">
+
+    <%- include("../partials/navbar") %>
+
+    <div class="p-6 md:p-8">
+
+        <!-- HEADER -->
+        <div class="mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">Dashboard</h1>
+            <p class="text-gray-500">Complaint Management Overview</p>
+        </div>
+
+        <!-- STATS CARDS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <div class="bg-white rounded-xl shadow p-6 border-l-4 border-blue-500">
+                <p class="text-gray-500">Total Users</p>
+                <h2 class="text-3xl font-bold mt-2"><%= totalUsers %></h2>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6 border-l-4 border-yellow-500">
+                <p class="text-gray-500">Pending</p>
+                <h2 class="text-3xl font-bold mt-2 text-yellow-500"><%= pending %></h2>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6 border-l-4 border-green-500">
+                <p class="text-gray-500">Resolved</p>
+                <h2 class="text-3xl font-bold mt-2 text-green-500"><%= resolved %></h2>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6 border-l-4 border-red-500">
+                <p class="text-gray-500">Rejected</p>
+                <h2 class="text-3xl font-bold mt-2 text-red-500"><%= rejected %></h2>
+            </div>
+
+        </div>
+
+        <!-- RECENT COMPLAINTS -->
+        <div class="mt-8 bg-white rounded-xl shadow">
+
+            <div class="p-5 border-b flex justify-between items-center">
+                <h2 class="text-xl font-bold">Recent Complaints</h2>
+                <a href="/complaints" class="text-blue-500 text-sm hover:underline">
+                    View All
+                </a>
+            </div>
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full">
+
+                    <thead class="bg-gray-100 text-gray-600 text-sm">
+                        <tr>
+                            <th class="p-3 text-left">Title</th>
+                            <th class="p-3 text-left">User</th>
+                            <th class="p-3 text-left">Status</th>
+                            <th class="p-3 text-left">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <% if (complaints && complaints.length > 0) { %>
+
+                            <% complaints.forEach(c => { %>
+                                <tr class="border-t hover:bg-gray-50">
+
+                                    <td class="p-3 font-medium"><%= c.title %></td>
+
+                                    <!-- 🔥 SAFE USER CHECK -->
+                                    <td class="p-3 text-gray-600">
+                                        <%= c.user ? c.user.name : "Unknown User" %>
+                                    </td>
+
+                                    <td class="p-3">
+
+                                        <span class="px-3 py-1 text-xs rounded-full text-white
+                                            <%= c.status === 'Pending' ? 'bg-yellow-500' : '' %>
+                                            <%= c.status === 'Resolved' ? 'bg-green-500' : '' %>
+                                            <%= c.status === 'Rejected' ? 'bg-red-500' : '' %>
+                                            <%= c.status === 'In Progress' ? 'bg-blue-500' : '' %>
+                                        ">
+                                            <%= c.status %>
+                                        </span>
+
+                                    </td>
+
+                                    <td class="p-3">
+                                        <a href="/complaints/<%= c._id %>"
+                                           class="text-blue-500 hover:underline text-sm">
+                                            View
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            <% }) %>
+
+                        <% } else { %>
+
+                            <tr>
+                                <td colspan="4" class="p-6 text-center text-gray-500">
+                                    No complaints found
+                                </td>
+                            </tr>
+
+                        <% } %>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
